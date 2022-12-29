@@ -1,16 +1,22 @@
 package rooms;
 
-import java.util.List;
+public abstract class Room extends AirportParts implements Comparable<Room> {
 
-import passangers.Passanger;
-
-public class Room {
-
-	protected List<Passanger> oczekujacy;
-	protected int serviceTime;
+	//protected List<Passanger> oczekujacy;
+	protected int id;
 	protected int maxCapacity;
-	protected int banishPeople;
-	
+	protected int capacityNow;
+	//protected int banishedPeople;
+
+	public int getId() {
+		return id;
+	}
+
+	@Override
+	public int compareTo(Room o) {
+		return this.id-o.getId();
+	}
+
 	//metoda procesu
 	
 }

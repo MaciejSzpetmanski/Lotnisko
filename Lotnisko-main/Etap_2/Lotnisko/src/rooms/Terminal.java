@@ -1,20 +1,13 @@
 package rooms;
 
-import java.util.List;
-
-import passangers.Passanger;
-
 public class Terminal extends Room{
-
-	protected final int id;
 	
-	Terminal(int id, List<Passanger> oczekujacy, int serviceTime, int maxCapacity, int banishPeople){
-		
+	public Terminal(int id, int serviceTime, int maxCapacity){
 		this.id = id;
-		this.oczekujacy = oczekujacy;
+		//this.oczekujacy = oczekujacy;
 		this.serviceTime = serviceTime;
 		this.maxCapacity = maxCapacity;
-		this.banishPeople = banishPeople;
+		//this.banishedPeople = banishPeople;
 		
 	}
 	
