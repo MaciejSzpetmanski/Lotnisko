@@ -2,9 +2,14 @@ package airport;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 public class StaticGUI {
 
@@ -255,6 +260,23 @@ public class StaticGUI {
 		VIPPanel3.setBounds(750, 150, 150, 150);
 		VIPPanel3.setLayout(new BorderLayout());
 
+		//////////////////////
+		
+		JPanel borderPanel = new JPanel();
+		borderPanel.setBackground(Color.darkGray);		
+		
+		//////////////////////
+		
+		JButton button = new JButton("Start");
+		JButton button2 = new JButton("Stop");
+		JButton button3 = new JButton("Submit");
+		JTextField textField = new JTextField();
+		
+		textField.setPreferredSize(new Dimension(250,40));
+		textField.setFont(new Font("Consolas",Font.PLAIN,35));
+		textField.setForeground(new Color(0x00FF00));
+		textField.setBackground(Color.black);
+		textField.setCaretColor(Color.white);
 		
 		//////////////////////
 		
@@ -262,6 +284,8 @@ public class StaticGUI {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLayout(null);
 		frame.setSize(2000,2000);
+		frame.setLayout(new BorderLayout(2000,25));
+		frame.add(borderPanel,BorderLayout.EAST);
 		frame.setVisible(true);
 		Panel1.add(entrance2);
 		Panel2.add(entrance);
@@ -312,5 +336,9 @@ public class StaticGUI {
 		frame.add(Panel19);
 		frame.add(Panel20);
 		frame.add(Panel21);
+		borderPanel.add(button);
+		borderPanel.add(button2);
+		borderPanel.add(button3);
+		borderPanel.add(textField);
 	}
 }
