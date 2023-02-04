@@ -1,0 +1,15 @@
+package rooms;
+
+public class Terminal extends Room{
+	
+	public Terminal(int id, int serviceTime, int maxCapacity){
+		super();
+		this.id = id;
+		//this.oczekujacy = oczekujacy;
+		this.serviceTime = serviceTime;	//niepotrzebne?
+		this.maxCapacity = maxCapacity;
+		//this.banishedPeople = banishPeople;
+		
+	}
+	
+}
