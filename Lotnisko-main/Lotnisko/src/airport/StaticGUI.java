@@ -337,16 +337,16 @@ public class StaticGUI {
 	public static void makePanel(){
 		for (List l:panels){
 			//makePanel((JPanel)l.get(0));
-			((JPanel)l.get(0)).setBackground(colorFor(normalize(0, ((Room)l.get(1)).getMaxCapacity(),((Room)l.get(1)).getMaxCapacity())));
+			((JPanel)l.get(0)).setBackground(colorFor(normalize(0, ((Room)l.get(1)).getMaxCapacity(),((Room)l.get(1)).getCapacityNow())));
 			((JPanel)l.get(0)).setBounds((Integer) l.get(2), (Integer) l.get(3), (Integer) l.get(4), (Integer) l.get(5));
 			((JPanel)l.get(0)).setLayout(new BorderLayout());
 		}
 
 	}
 
-	public static void repaint(){
+	public static void refresh(){
 		for (List l:panels){
-			((JPanel)l.get(0)).setBackground(colorFor(normalize(0, ((Room)l.get(1)).getMaxCapacity(),((Room)l.get(1)).getMaxCapacity())));
+			((JPanel)l.get(0)).setBackground(colorFor(normalize(0, ((Room)l.get(1)).getMaxCapacity(),((Room)l.get(1)).getCapacityNow())));
 		}
 
 	}

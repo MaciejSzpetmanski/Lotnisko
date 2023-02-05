@@ -60,13 +60,13 @@ public class Airport implements Runnable{
     public void run() {
         time = 0;
         //Initiate(2, 7, 7, 7, 7, 7, 7, 7, 7, 7);
-        passengers.addAll(PassengerGenerator.generate(30));
+        //passengers.addAll(PassengerGenerator.generate(30));
         for(int i =0; i<180; i++ ){
            // generuj pasa¿er i dodaj do globalnej listy
-            //passengers.addAll(PassengerGenerator.generate(20));
+            passengers.addAll(PassengerGenerator.generate(100));
            // sprawdŸ okres czekania i daj sygna³ 
             for (Passanger p:passengers){
-                if(p.getWaitingTime() == Airport.getTime()) {
+                if(p.getWaitingTime() <= Airport.getTime()) {
                 	p.goNext();
                 }
             }
@@ -78,7 +78,7 @@ public class Airport implements Runnable{
                 p.takeOff();
             }
 
-            StaticGUI.repaint();
+            StaticGUI.refresh();
 
            //sleep
            try {

@@ -4,6 +4,7 @@ import airport.Airport;
 import passangers.Passanger;
 import rooms.Terminal;
 
+import java.util.Iterator;
 import java.util.List;
 
 public class Plane implements Comparable<Plane>{
@@ -33,11 +34,12 @@ public class Plane implements Comparable<Plane>{
 
 	public void takeOff(){
 		List<Passanger> passengers = Airport.getPassengers();
-		for (Passanger p: passengers){
+ 		for (Iterator<Passanger> it = passengers.iterator(); it.hasNext();){
+			 Passanger p =it.next();
             if(p.getRoom() instanceof Terminal){
 				Plane pOdlot = p.getOdlot();
                 if(pOdlot.getOdlot()==odlot & pOdlot.getTerminal()==terminal){
-					passengers.remove(p);	//pasa¿er odlatuje z lotniska
+					it.remove();	//pasa¿er odlatuje z lotniska
 				}
                 
             }
