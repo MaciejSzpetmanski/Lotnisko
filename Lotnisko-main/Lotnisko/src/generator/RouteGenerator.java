@@ -34,6 +34,12 @@ public class RouteGenerator {
         route.add(6); //waitingRoom
         route.add(7); //terminal
 
+        for (int i:route) {
+            System.out.println(i);
+        }
+        System.out.println("#####################");
+
         return route;
+
     }
 }

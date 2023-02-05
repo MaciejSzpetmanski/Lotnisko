@@ -23,7 +23,7 @@ public class Airport implements Runnable{
         //BaggageCheckIn - 2
         //BaggageDrop - 3
         //PassportControll - 4
-        //Shop -12,13 - 5
+        //Shop  - 5
         //WaitingRoom - 6
         //Terminal - 7
         // Wejœcie - 8
@@ -43,6 +43,14 @@ public class Airport implements Runnable{
         airport.get(3).add(new BaggageDrop(8, 6, BDCapacity));
         planes= new TreeSet<>(PlanesGenerator.generate(20));
 
+        for (List<Room> l:airport) {
+            for (Room r:l) {
+                System.out.println(r);
+            }
+            System.out.println("#################");
+
+        }
+
     }
 
     public static List<List<Room>> getAirport() {
@@ -51,10 +59,11 @@ public class Airport implements Runnable{
 
     public void run() {
         time = 0;
-        Initiate(2, 7, 7, 7, 7, 7, 7, 7, 7, 7);
+        //Initiate(2, 7, 7, 7, 7, 7, 7, 7, 7, 7);
+        passengers.addAll(PassengerGenerator.generate(30));
         for(int i =0; i<180; i++ ){
            // generuj pasa¿er i dodaj do globalnej listy
-            passengers.addAll(PassengerGenerator.generate(20));
+            //passengers.addAll(PassengerGenerator.generate(20));
            // sprawdŸ okres czekania i daj sygna³ 
             for (Passanger p:passengers){
                 if(p.getWaitingTime() == Airport.getTime()) {

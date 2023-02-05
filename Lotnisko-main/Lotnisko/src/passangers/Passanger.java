@@ -44,7 +44,7 @@ public class Passanger extends Person{
 		} 
 		else{	//przechodzi do terminalu
 			currentRoom = rooms.get(odlot.getTerminal());
-			waitingTime = odlot.getOdlot();
+			waitingTime = 181;
 			currentRoom.increaseCapacityNow();
 		}
 		path.remove(0);

@@ -1,11 +1,9 @@
 package generator;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Random;
-
 import planes.Plane;
+
+import java.util.HashSet;
+import java.util.Random;
 
 public class PlanesGenerator {
 
@@ -19,6 +17,7 @@ public class PlanesGenerator {
 	            	SetOfPlanes.add(new Plane(random.nextInt(170)+10, 1));
 	            } else SetOfPlanes.add(new Plane(random.nextInt(170)+10, 2));
 	        }
+		 	SetOfPlanes.add(new Plane(180, 1));
 	        return SetOfPlanes;
 	    }
 	 
