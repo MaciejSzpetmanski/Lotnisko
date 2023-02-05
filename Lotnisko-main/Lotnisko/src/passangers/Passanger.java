@@ -11,7 +11,7 @@ import java.util.TreeSet;
 public class Passanger extends Person{
 
 	protected List<Integer> path;
-	final int[] odlot;
+	final Plane odlot;
 	private final int boardingOrder = 0;
 	protected int waitingTime;
 	protected int totalTime;
@@ -19,13 +19,13 @@ public class Passanger extends Person{
 	protected static List<List<Room>> airport;
 	protected static TreeSet<Plane> planes;
 	
-	public Passanger(List<Integer> path) {
+	public Passanger(List<Integer> path, Plane odlot) {
 		this.path = path;
 		Random  random =  new Random();
 		this.airport = Airport.getAirport();
 		this.currentRoom = airport.get(8).get(random.nextInt(airport.get(8).size()));
 		this.planes = Airport.getPlanes();
-		this.odlot = planes[9];
+		this.odlot = odlot;
 	}
 
 	public void goNext(){
@@ -33,9 +33,9 @@ public class Passanger extends Person{
 		Random  random =  new Random();
 		currentRoom.decreaseCapacityNow();
 		if (path.get(0)!= 7){	//przechodzi do zwyk³ego pokoju
-			currentRoom  = rooms.get(random.nextInt(rooms.size()));
+			currentRoom  = rooms.get((rooms.size()>0)?random.nextInt(rooms.size()):0);
 			if (path.get(0) == 6){	//waitingRoom
-				waitingTime = odlot[0]-2;
+				waitingTime = odlot.getOdlot()-2;
 			}
 			else{
 				waitingTime = currentRoom.getCapacityNow()*currentRoom.getServiceTime() + Airport.getTime();
@@ -43,8 +43,8 @@ public class Passanger extends Person{
 			currentRoom.increaseCapacityNow();
 		} 
 		else{	//przechodzi do terminalu
-			currentRoom = rooms.get(odlot[1]);
-			waitingTime = odlot[0];
+			currentRoom = rooms.get(odlot.getTerminal());
+			waitingTime = odlot.getOdlot();
 			currentRoom.increaseCapacityNow();
 		}
 		path.remove(0);
@@ -54,7 +54,7 @@ public class Passanger extends Person{
 		return waitingTime;
 	}
 
-	public int[] getOdlot() {
+	public Plane getOdlot() {
 		return odlot;
 	}
 

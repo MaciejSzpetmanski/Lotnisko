@@ -6,6 +6,8 @@
       <sourceFolder url="file://$MODULE_DIR$/Lotnisko-main/Etap_1/Lotnisko/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Lotnisko-main/Etap_2/Lotnisko/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Lotnisko-main/Etap_3/Lotnisko/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Lotnisko-main/Etap_4/Lotnisko/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Lotnisko-main/Lotnisko/src" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

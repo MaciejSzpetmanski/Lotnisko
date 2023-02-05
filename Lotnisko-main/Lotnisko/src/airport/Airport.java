@@ -1,18 +1,14 @@
 package airport;
 
+import generator.PassengerGenerator;
+import generator.PlanesGenerator;
+import passangers.Passanger;
+import planes.Plane;
 import rooms.*;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.TreeSet;
-
-import generator.PassengerGenerator;
-import generator.PlanesGenerator;
-import generator.RouteGenerator;
-import passangers.Passanger;
-import passangers.Person;
-import planes.Plane;
 
 public class Airport implements Runnable{
     private final static List<List<Room>> airport = new ArrayList<>();
@@ -44,7 +40,7 @@ public class Airport implements Runnable{
             else airport.get(5).add(new Shop(11 + i / 2, 3, ShopCapacity));
         }
         airport.get(2).add(new BaggageCheckIn(8, 6, BCICapacity));
-        airport.get(4).add(new BaggageDrop(8, 6, BDCapacity));
+        airport.get(3).add(new BaggageDrop(8, 6, BDCapacity));
         planes= new TreeSet<>(PlanesGenerator.generate(20));
 
     }
@@ -67,12 +63,13 @@ public class Airport implements Runnable{
             }
 
             //spr odpoty
-            
             if(planes.first().getOdlot()<=time){
                 //odlatuje zabieraj¹c pasa¿erów
                 Plane p = planes.pollFirst();   //usuwa i zwraca pierwszy
                 p.takeOff();
             }
+
+            StaticGUI.repaint();
 
            //sleep
            try {

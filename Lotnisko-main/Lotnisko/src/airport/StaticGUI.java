@@ -1,22 +1,15 @@
 package airport;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-
-import airport.Airport;
 import rooms.Room;
 
+import javax.swing.*;
+import java.awt.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+
 public class StaticGUI {
+	private static HashMap<JPanel, List> panels = new HashMap();
 	
 	private static double normalize(double min, double max, double value) {
 	    return (value - min) / (max - min);
@@ -24,137 +17,118 @@ public class StaticGUI {
 	private static Color colorFor(double value) {
 	    value = Math.max(0, Math.min(1, value));
 	    int red = (int)(value * 255);
-	    return new Color(red,1 - red,0);
+	    return new Color(red,255 - red,0);
 	}
 
 	public static void main(String[] args) {
 		
-		//Airport airportlot = new Airport();
+		Airport airportlot = new Airport();
 		airportlot.run();
-		final List<List<Room>> airport = airportlot.getAirport();
+		final List<List<Room>> airport = Airport.getAirport();
+
+		HashMap<JLabel, String> labels = new HashMap();
+
 		JLabel entrance = new JLabel();
-		entrance.setText("Entrance");
-		entrance.setVerticalAlignment(JLabel.CENTER);
-		entrance.setHorizontalAlignment(JLabel.CENTER);
+		labels.put(entrance,"Entrance");
+
 		
 		JLabel entrance2 = new JLabel();
-		entrance2.setText("Entrance");
-		entrance2.setVerticalAlignment(JLabel.CENTER);
-		entrance2.setHorizontalAlignment(JLabel.CENTER);
+		labels.put(entrance2,"Entrance");
+
 		
 		JLabel entrance3 = new JLabel();
-		entrance3.setText("Entrance");
-		entrance3.setVerticalAlignment(JLabel.CENTER);
-		entrance3.setHorizontalAlignment(JLabel.CENTER);
+		labels.put(entrance3,"Entrance");
+
 		
 		JLabel baggageCheckIn = new JLabel();
-		baggageCheckIn.setText("BaggageCheckIn");
-		baggageCheckIn.setVerticalAlignment(JLabel.CENTER);
-		baggageCheckIn.setHorizontalAlignment(JLabel.CENTER);
+		labels.put(baggageCheckIn,"BaggageCheckIn");
+
 		
 		JLabel checkIn = new JLabel();
-		checkIn.setText("CheckIn");
-		checkIn.setVerticalAlignment(JLabel.CENTER);
-		checkIn.setHorizontalAlignment(JLabel.CENTER);
+		labels.put(checkIn,"CheckIn");
+
 		
 		JLabel checkIn2 = new JLabel();
-		checkIn2.setText("CheckIn");
-		checkIn2.setVerticalAlignment(JLabel.CENTER);
-		checkIn2.setHorizontalAlignment(JLabel.CENTER);
+		labels.put(checkIn2,"CheckIn");
+
 		
 		JLabel checkIn3 = new JLabel();
-		checkIn3.setText("CheckIn");
-		checkIn3.setVerticalAlignment(JLabel.CENTER);
-		checkIn3.setHorizontalAlignment(JLabel.CENTER);
+		labels.put(checkIn3,"CheckIn");
+
 		
 		JLabel checkIn4 = new JLabel();
-		checkIn4.setText("CheckIn VIP");
-		checkIn4.setVerticalAlignment(JLabel.CENTER);
-		checkIn4.setHorizontalAlignment(JLabel.CENTER);
+		labels.put(checkIn4,"CheckIn VIP");
+
 		
 		JLabel security = new JLabel();
-		security.setText("Security");
-		security.setVerticalAlignment(JLabel.CENTER);
-		security.setHorizontalAlignment(JLabel.CENTER);
+		labels.put(security,"Security");
+
 		
 		JLabel security2 = new JLabel();
-		security2.setText("Security");
-		security2.setVerticalAlignment(JLabel.CENTER);
-		security2.setHorizontalAlignment(JLabel.CENTER);
+		labels.put(security2,"Security");
+
 		
 		JLabel security3 = new JLabel();
-		security3.setText("Security");
-		security3.setVerticalAlignment(JLabel.CENTER);
-		security3.setHorizontalAlignment(JLabel.CENTER);
+		labels.put(security3,"Security");
+
 		
 		JLabel security4 = new JLabel();
-		security4.setText("Security VIP");
-		security4.setVerticalAlignment(JLabel.CENTER);
-		security4.setHorizontalAlignment(JLabel.CENTER);
+		labels.put(security4,"Security VIP");
+
 		
 		JLabel shop = new JLabel();
-		shop.setText("Shop");
-		shop.setVerticalAlignment(JLabel.CENTER);
-		shop.setHorizontalAlignment(JLabel.CENTER);
+		labels.put(shop,"Shop");
+
 		
 		JLabel shop2 = new JLabel();
-		shop2.setText("Shop");
-		shop2.setVerticalAlignment(JLabel.CENTER);
-		shop2.setHorizontalAlignment(JLabel.CENTER);
+		labels.put(shop2,"Shop");
+
 		
 		JLabel passportControl = new JLabel();
-		passportControl.setText("PassportControl");
-		passportControl.setVerticalAlignment(JLabel.CENTER);
-		passportControl.setHorizontalAlignment(JLabel.CENTER);
+		labels.put(passportControl,"PassportControl");
+
 		
 		JLabel passportControl2 = new JLabel();
-		passportControl2.setText("PassportControl");
-		passportControl2.setVerticalAlignment(JLabel.CENTER);
-		passportControl2.setHorizontalAlignment(JLabel.CENTER);
+		labels.put(passportControl2,"PassportControl");
+
 		
 		JLabel terminal = new JLabel();
-		terminal.setText("Terminal");
-		terminal.setVerticalAlignment(JLabel.CENTER);
-		terminal.setHorizontalAlignment(JLabel.CENTER);
+		labels.put(terminal,"Terminal");
+
 		
 		JLabel terminal2 = new JLabel();
-		terminal2.setText("Terminal");
-		terminal2.setVerticalAlignment(JLabel.CENTER);
-		terminal2.setHorizontalAlignment(JLabel.CENTER);
+		labels.put(terminal2,"Terminal");
+
 		
 		JLabel terminal3 = new JLabel();
-		terminal3.setText("Terminal");
-		terminal3.setVerticalAlignment(JLabel.CENTER);
-		terminal3.setHorizontalAlignment(JLabel.CENTER);
+		labels.put(terminal3,"Terminal");
+
 		
 		JLabel terminal4 = new JLabel();
-		terminal4.setText("Terminal");
-		terminal4.setVerticalAlignment(JLabel.CENTER);
-		terminal4.setHorizontalAlignment(JLabel.CENTER);
+		labels.put(terminal4,"Terminal");
+
 		
 		JLabel waitingRoom = new JLabel();
-		waitingRoom.setText("WaitingRoom");
-		waitingRoom.setVerticalAlignment(JLabel.CENTER);
-		waitingRoom.setHorizontalAlignment(JLabel.CENTER);
+		labels.put(waitingRoom,"WaitingRoom");
+
 		
 		JLabel waitingRoom2 = new JLabel();
-		waitingRoom2.setText("WaitingRoom");
-		waitingRoom2.setVerticalAlignment(JLabel.CENTER);
-		waitingRoom2.setHorizontalAlignment(JLabel.CENTER);
+		labels.put(waitingRoom2,"WaitingRoom");
+
 		
 		JLabel waitingRoom3 = new JLabel();
-		waitingRoom3.setText("WaitingRoom");
-		waitingRoom3.setVerticalAlignment(JLabel.CENTER);
-		waitingRoom3.setHorizontalAlignment(JLabel.CENTER);
+		labels.put(waitingRoom3,"WaitingRoom");
+
 		
 		JLabel waitingRoom4 = new JLabel();
-		waitingRoom4.setText("WaitingRoom VIP");
-		waitingRoom4.setVerticalAlignment(JLabel.CENTER);
-		waitingRoom4.setHorizontalAlignment(JLabel.CENTER);
+		labels.put(waitingRoom4,"WaitingRoom VIP");
+
+
+		for (JLabel label:labels.keySet()){
+			makeLabel(label, labels.get(label));
+		}
 		
 		///////////////////
-
-		List<JPanel> panels = new ArrayList();
 		
 		JPanel Panel1 = new JPanel();
 		Panel1.setBackground(Color.cyan);
@@ -172,133 +146,110 @@ public class StaticGUI {
 		Panel3.setLayout(new BorderLayout());
 
 		JPanel Panel4 = new JPanel();
-		Panel4.setBackground(colorFor(normalize(0,airport.get(0).get(0).getMaxCapacity(),airport.get(0).get(0).getCapacityNow())));
-		Panel4.setBounds(200, 250, 100, 150);
-		Panel4.setLayout(new BorderLayout());
-		panels.add(Panel4);
+		panels.put(Panel4, Arrays.asList(airport.get(0).get(0), 200, 250, 100, 150));
+
+
 
 		JPanel Panel5 = new JPanel();
-		Panel5.setBackground(colorFor(normalize(0,airport.get(0).get(1).getMaxCapacity(),airport.get(0).get(1).getCapacityNow())));
-		Panel5.setBounds(200, 450, 100, 150);
-		Panel5.setLayout(new BorderLayout());
-		panels.add(Panel5);
+		panels.put(Panel5,Arrays.asList(airport.get(0).get(1),200, 450, 100, 150));
+
+
 
 		JPanel Panel6 = new JPanel();
-		Panel6.setBackground(colorFor(normalize(0,airport.get(0).get(2).getMaxCapacity(),airport.get(0).get(2).getCapacityNow())));
-		Panel6.setBounds(200, 650, 100, 150);
-		Panel6.setLayout(new BorderLayout());
-		panels.add(Panel6);
+		panels.put(Panel6,Arrays.asList(airport.get(0).get(2),200, 650, 100, 150));
+
+
 
 		JPanel Panel7 = new JPanel();
-		Panel7.setBackground(colorFor(normalize(0,airport.get(2).get(0).getMaxCapacity(),airport.get(2).get(0).getCapacityNow())));
-		Panel7.setBounds(325, 75, 200, 100);
-		Panel7.setLayout(new BorderLayout());
-		panels.add(Panel7);
+		panels.put(Panel7,Arrays.asList(airport.get(2).get(0),325, 75, 200, 100));
+
 
 		JPanel Panel8 = new JPanel();
-		Panel8.setBackground(colorFor(normalize(0,airport.get(1).get(0).getMaxCapacity(),airport.get(1).get(0).getCapacityNow())));
-		Panel8.setBounds(325, 250, 200, 100);
-		Panel8.setLayout(new BorderLayout());
-		panels.add(Panel8);
+		panels.put(Panel8,Arrays.asList(airport.get(1).get(0),325, 250, 200, 100));
+
+
 
 		JPanel Panel9 = new JPanel();
-		Panel9.setBackground(colorFor(normalize(0,airport.get(1).get(1).getMaxCapacity(),airport.get(1).get(1).getCapacityNow())));
-		Panel9.setBounds(325, 400, 200, 100);
-		Panel9.setLayout(new BorderLayout());
-		panels.add(Panel9);
+		panels.put(Panel9,Arrays.asList(airport.get(1).get(1),325, 400, 200, 100));
+
+
 
 		JPanel Panel10 = new JPanel();
-		Panel10.setBackground(colorFor(normalize(0,airport.get(1).get(2).getMaxCapacity(),airport.get(1).get(2).getCapacityNow())));
-		Panel10.setBounds(325, 550, 200, 100);
-		Panel10.setLayout(new BorderLayout());
-		panels.add(Panel10);
+		panels.put(Panel10,Arrays.asList(airport.get(1).get(2),325, 550, 200, 100));
+
+
 
 		JPanel Panel11 = new JPanel();
-		Panel11.setBackground(colorFor(normalize(0,airport.get(5).get(0).getMaxCapacity(),airport.get(5).get(0).getCapacityNow())));
-		Panel11.setBounds(550, 300, 150, 150);
-		Panel11.setLayout(new BorderLayout());
-		panels.add(Panel11);
+		panels.put(Panel11,Arrays.asList(airport.get(5).get(0),550, 300, 150, 150));
+
+
 
 		JPanel Panel12 = new JPanel();
-		Panel12.setBackground(colorFor(normalize(0,airport.get(5).get(1).getMaxCapacity(),airport.get(5).get(1).getCapacityNow())));
-		Panel12.setBounds(550, 500, 150, 150);
-		Panel12.setLayout(new BorderLayout());
-		panels.add(Panel12);
+		panels.put(Panel12,Arrays.asList(airport.get(5).get(1),550, 500, 150, 150));
+
+
 
 		JPanel Panel13 = new JPanel();
-		Panel13.setBackground(colorFor(normalize(0,airport.get(4).get(0).getMaxCapacity(),airport.get(4).get(0).getCapacityNow())));
-		Panel13.setBounds(550, 100, 150, 75);
-		Panel13.setLayout(new BorderLayout());
-		panels.add(Panel13);
+		panels.put(Panel13,Arrays.asList(airport.get(4).get(0),550, 100, 150, 75));
+
+
 
 		JPanel Panel14 = new JPanel();
-		Panel14.setBackground(colorFor(normalize(0,airport.get(4).get(1).getMaxCapacity(),airport.get(4).get(1).getCapacityNow())));
-		Panel14.setBounds(550, 700, 150, 75);
-		Panel14.setLayout(new BorderLayout());
-		panels.add(Panel14);
+		panels.put(Panel14,Arrays.asList(airport.get(4).get(1),550, 700, 150, 75));
 
 		JPanel Panel15 = new JPanel();
-		Panel15.setBackground(colorFor(normalize(0,airport.get(6).get(0).getMaxCapacity(),airport.get(6).get(0).getCapacityNow())));
-		Panel15.setBounds(750, 325, 150, 150);
-		Panel15.setLayout(new BorderLayout());
-		panels.add(Panel14);
+		panels.put(Panel15,Arrays.asList(airport.get(6).get(0),750, 325, 150, 150));
+
+
 
 		JPanel Panel16 = new JPanel();
-		Panel16.setBackground(colorFor(normalize(0,airport.get(6).get(1).getMaxCapacity(),airport.get(6).get(1).getCapacityNow())));
-		Panel16.setBounds(750, 500, 150, 150);
-		Panel16.setLayout(new BorderLayout());
-		panels.add(Panel16);
+		panels.put(Panel16,Arrays.asList(airport.get(6).get(1),750, 500, 150, 150));
+
+
 
 		JPanel Panel17 = new JPanel();
-		Panel17.setBackground(colorFor(normalize(0,airport.get(6).get(2).getMaxCapacity(),airport.get(6).get(2).getCapacityNow())));
-		Panel17.setBounds(750, 700, 150, 150);
-		Panel17.setLayout(new BorderLayout());
-		panels.add(Panel17);
+		panels.put(Panel17,Arrays.asList(airport.get(6).get(2),750, 700, 150, 150));
+
+
 
 		JPanel Panel18 = new JPanel();
-		Panel18.setBackground(colorFor(normalize(0,airport.get(7).get(0).getMaxCapacity(),airport.get(7).get(0).getCapacityNow())));
-		Panel18.setBounds(950, 100, 100, 100);
-		Panel18.setLayout(new BorderLayout());
-		panels.add(Panel18);
+		panels.put(Panel18,Arrays.asList(airport.get(7).get(0),950, 100, 100, 100));
+
+
 
 		JPanel Panel19 = new JPanel();
-		Panel19.setBackground(colorFor(normalize(0,airport.get(7).get(1).getMaxCapacity(),airport.get(7).get(1).getCapacityNow())));
-		Panel19.setBounds(950, 250, 100, 100);
-		Panel19.setLayout(new BorderLayout());
-		panels.add(Panel19);
+		panels.put(Panel19,Arrays.asList(airport.get(7).get(1),950, 250, 100, 100));
+
+
 
 		JPanel Panel20 = new JPanel();
-		Panel20.setBackground(colorFor(normalize(0,airport.get(7).get(2).getMaxCapacity(),airport.get(7).get(2).getCapacityNow())));
-		Panel20.setBounds(950, 400, 100, 100);
-		Panel20.setLayout(new BorderLayout());
-		panels.add(Panel20);
+		panels.put(Panel20,Arrays.asList(airport.get(7).get(2),950, 400, 100, 100));
+
+
 
 		JPanel Panel21 = new JPanel();
-		Panel21.setBackground(colorFor(normalize(0,airport.get(7).get(3).getMaxCapacity(),airport.get(7).get(3).getCapacityNow())));
-		Panel21.setBounds(950, 550, 100, 100);
-		Panel21.setLayout(new BorderLayout());
-		panels.add(Panel21);
+		panels.put(Panel21,Arrays.asList(airport.get(7).get(3),950, 550, 100, 100));
+
 
 		
-		
-		
 		JPanel VIPPanel1 = new JPanel();
-		VIPPanel1.setBackground(colorFor(normalize(0,airport.get(1).get(0).getMaxCapacity(),airport.get(1).get(0).getCapacityNow())));
-		VIPPanel1.setBounds(200, 50, 100, 150);
-		VIPPanel1.setLayout(new BorderLayout());
-		panels.add(VIPPanel1);
+		panels.put(VIPPanel1,Arrays.asList(airport.get(1).get(0),200, 50, 100, 150));
+
+
 		
 		JPanel VIPPanel2 = new JPanel();
-		VIPPanel2.setBackground(colorFor(normalize(0,airport.get(1).get(0).getMaxCapacity(),airport.get(1).get(0).getCapacityNow())));
-		VIPPanel2.setBounds(325, 700, 200, 100);
-		VIPPanel2.setLayout(new BorderLayout());
-		panels.add(VIPPanel2);
+		panels.put(VIPPanel2,Arrays.asList(airport.get(1).get(0),325, 700, 200, 100));
+
+
 		
 		JPanel VIPPanel3 = new JPanel();
-		VIPPanel3.setBackground(colorFor(normalize(0,airport.get(6).get(3).getMaxCapacity(),airport.get(6).get(3).getCapacityNow())));
-		VIPPanel3.setBounds(750, 150, 150, 150);
-		VIPPanel3.setLayout(new BorderLayout());
-		panels.add(VIPPanel3);
+		panels.put(VIPPanel3,Arrays.asList(airport.get(6).get(3),750, 150, 150, 150));
+
+
+		for (JPanel panel:panels.keySet()){
+			makePanel(panel);
+		}
+
 
 		//////////////////////
 		
@@ -380,9 +331,26 @@ public class StaticGUI {
 		borderPanel.add(button2);
 		borderPanel.add(button3);
 		borderPanel.add(textField);
+
+		//repaint();
 	}
 
-	public static void repaint(List<JPanel> panels){
+	public static void makePanel(JPanel panel){
+		panel.setBackground(colorFor(normalize(0, ((Room)panels.get(panel).get(0)).getMaxCapacity(),((Room)panels.get(panel).get(0)).getMaxCapacity())));
+		panel.setBounds(200, 250, 100, 150);
+		panel.setLayout(new BorderLayout());
+	}
 
+	public static void repaint(){
+		for (JPanel panel:panels.keySet()){
+			panel.setBackground(colorFor(normalize(0, ((Room)panels.get(panel).get(0)).getMaxCapacity(),((Room)panels.get(panel).get(0)).getMaxCapacity())));
+		}
+
+	}
+
+	public static void makeLabel(JLabel label, String name){
+		label.setText(name);
+		label.setVerticalAlignment(JLabel.CENTER);
+		label.setHorizontalAlignment(JLabel.CENTER);
 	}
 }
