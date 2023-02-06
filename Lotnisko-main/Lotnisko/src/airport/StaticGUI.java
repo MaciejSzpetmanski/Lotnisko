@@ -253,7 +253,9 @@ public class StaticGUI {
 		//////////////////////
 		
 		JPanel borderPanel = new JPanel();
-		borderPanel.setBackground(Color.darkGray);		
+		JPanel borderPanel2 = new JPanel();
+		borderPanel.setBackground(Color.darkGray);
+		borderPanel2.setBackground(Color.darkGray);
 		
 		//////////////////////
 		
@@ -269,6 +271,49 @@ public class StaticGUI {
 		textField.setCaretColor(Color.white);
 		
 		//////////////////////
+
+		List<List> texts = new ArrayList<>();
+		//List<JLabel> textLabels = new ArrayList<>();
+
+		JLabel lCI = new JLabel("CheckIns:");
+		//textLabels.add(lCI);
+		JTextField tCI = new JTextField();
+		texts.add(Arrays.asList(lCI,tCI));
+
+		JLabel lS = new JLabel("Security:");
+		//textLabels.add(lS);
+		JTextField tS = new JTextField();
+		texts.add(Arrays.asList(lS,tS));
+
+		JLabel lPC = new JLabel("Passport Controll:");
+		//textLabels.add(lPC);
+		JTextField tPC = new JTextField();
+		texts.add(Arrays.asList(lPC,tPC));
+
+		JLabel lSh = new JLabel("Shops:");
+		//textLabels.add(lSh);
+		JTextField tSh = new JTextField();
+		texts.add(Arrays.asList(lSh,tSh));
+
+		JLabel lBC = new JLabel("Baggage CheckIn:");
+		//textLabels.add(lBC);
+		JTextField tBC = new JTextField();
+		texts.add(Arrays.asList(lBC,tBC));
+
+		JLabel lWR = new JLabel("Waiting Rooms:");
+		//textLabels.add(lWR);
+		JTextField tWR = new JTextField();
+		texts.add(Arrays.asList(lWR,tWR));
+
+		JLabel lT = new JLabel("Termianls:");
+		//textLabels.add(lT);
+		JTextField tT = new JTextField();
+		texts.add(Arrays.asList(lT,tT));
+
+		JButton b = new JButton("submit");
+		
+
+		//////////////////////
 		
 		JFrame frame = new JFrame();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -276,6 +321,7 @@ public class StaticGUI {
 		frame.setSize(2000,2000);
 		frame.setLayout(new BorderLayout(2000,25));
 		frame.add(borderPanel,BorderLayout.EAST);
+
 		frame.setVisible(true);
 		Panel1.add(entrance2);
 		Panel2.add(entrance);
@@ -326,12 +372,43 @@ public class StaticGUI {
 		frame.add(Panel19);
 		frame.add(Panel20);
 		frame.add(Panel21);
-		borderPanel.add(button);
-		borderPanel.add(button2);
-		borderPanel.add(button3);
-		borderPanel.add(textField);
+		//borderPanel2.setSize(10,10);
+		borderPanel.setLayout(new GridBagLayout());
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		borderPanel.add(button,gbc);
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc.gridx = 1;
+		gbc.gridy = 0;
+		borderPanel.add(button2,gbc);
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc.gridx = 0;
+		gbc.gridy = 1;
+		borderPanel.add(button3,gbc);
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc.gridx = 1;
+		gbc.gridy = 1;
+		borderPanel.add(textField,gbc);
 
-		airportlot.run();
+		int i=2;
+		for (List l:texts) {
+			((JLabel)l.get(0)).setForeground(Color.WHITE);
+			gbc.fill = GridBagConstraints.HORIZONTAL;
+			gbc.gridx = 0;
+			gbc.gridy = i;
+			borderPanel.add((Component) l.get(0), gbc);
+			gbc.gridx = 1;
+			gbc.gridy = i;
+			borderPanel.add((Component) l.get(1),gbc);
+			i++;
+		}
+		gbc.gridx = 0;
+		gbc.gridy = 10;
+		borderPanel.add(b,gbc);
+
+		//airportlot.run();
 	}
 
 	public static void makePanel(){
@@ -355,5 +432,13 @@ public class StaticGUI {
 		label.setText(name);
 		label.setVerticalAlignment(JLabel.CENTER);
 		label.setHorizontalAlignment(JLabel.CENTER);
+	}
+	
+	public static void makeTextField(TextField t1){
+		t1.setPreferredSize(new Dimension(250,40));
+		t1.setFont(new Font("Consolas",Font.PLAIN,35));
+		t1.setForeground(new Color(0x00FF00));
+		t1.setBackground(Color.black);
+		//t1.setCaretColor(Color.white);
 	}
 }
