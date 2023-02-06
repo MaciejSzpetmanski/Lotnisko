@@ -16,6 +16,10 @@ public class Airport implements Runnable{
     private static List<Passanger> terminals = new ArrayList<>();
     private static TreeSet<Plane> planes;
     private static int time;
+    
+    private volatile boolean isStopped = true;
+    private boolean temp = true;
+    int last = 0;
 
     public static void Initiate(int serviceTime,int CheckInCapacity, int SecurityCapacity, int WRCapacity, int WRVIPCapacity, int TerminalCapacity, int PCCapacity, int ShopCapacity, int BCICapacity, int BDCapacity) {
         //chceckIn - 0
@@ -26,7 +30,7 @@ public class Airport implements Runnable{
         //Shop  - 5
         //WaitingRoom - 6
         //Terminal - 7
-        // Wejœcie - 8
+        // Wejï¿½cie - 8
         for (int i = 0; i <= 8; i++) {
             airport.add(new ArrayList<>());
         }
@@ -58,13 +62,19 @@ public class Airport implements Runnable{
     }
 
     public void run() {
+    	do {
+    	while(!isStopped) {
         time = 0;
         //Initiate(2, 7, 7, 7, 7, 7, 7, 7, 7, 7);
         //passengers.addAll(PassengerGenerator.generate(30));
-        for(int i =0; i<180; i++ ){
-           // generuj pasa¿er i dodaj do globalnej listy
+        for(int i =last; i<180; i++ ){
+           // generuj pasaï¿½er i dodaj do globalnej listy
             passengers.addAll(PassengerGenerator.generate(100));
-           // sprawdŸ okres czekania i daj sygna³ 
+            if(isStopped) {
+            	last = i;
+            	break;
+            }
+           // sprawdï¿½ okres czekania i daj sygnaï¿½ 
             for (Passanger p:passengers){
                 if(p.getWaitingTime() <= Airport.getTime()) {
                 	p.goNext();
@@ -73,7 +83,7 @@ public class Airport implements Runnable{
 
             //spr odpoty
             if(planes.first().getOdlot()<=time){
-                //odlatuje zabieraj¹c pasa¿erów
+                //odlatuje zabierajï¿½c pasaï¿½erï¿½w
                 Plane p = planes.pollFirst();   //usuwa i zwraca pierwszy
                 p.takeOff();
             }
@@ -88,8 +98,18 @@ public class Airport implements Runnable{
 		    }
             time++;
        }
-       
+    	}
+    	}while(temp);
       }
+    
+    public void stop(){
+        isStopped = true;
+
+    }
+    
+    public void start(){
+        isStopped = false;
+    }
     
     public static int getTime() {
         return time;

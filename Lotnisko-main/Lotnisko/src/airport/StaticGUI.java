@@ -4,11 +4,13 @@ import rooms.Room;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class StaticGUI {
+public class StaticGUI implements ActionListener{
 	private static List<List> panels = new ArrayList<>();
 	
 	private static double normalize(double min, double max, double value) {
@@ -19,6 +21,17 @@ public class StaticGUI {
 	    int red = (int)(value * 255);
 	    return new Color(red,255 - red,0);
 	}
+	
+	int obsluzeniPasazerowie = 0;
+	int sredniCzas = 0; 
+	String pasazerowie_String = String.format("%f", obsluzeniPasazerowie);
+	String czas_String = String.format("%f", sredniCzas);
+	JLabel timeLabel = new JLabel();
+	JLabel passangerLabel = new JLabel();
+	boolean started = false;
+	JFrame frameStart = new JFrame();
+	JFrame frame = new JFrame();
+	
 
 	public static void main(String[] args) {
 		
@@ -261,14 +274,10 @@ public class StaticGUI {
 		
 		JButton button = new JButton("Start");
 		JButton button2 = new JButton("Stop");
-		JButton button3 = new JButton("Submit");
-		JTextField textField = new JTextField();
 		
-		textField.setPreferredSize(new Dimension(250,40));
-		textField.setFont(new Font("Consolas",Font.PLAIN,35));
-		textField.setForeground(new Color(0x00FF00));
-		textField.setBackground(Color.black);
-		textField.setCaretColor(Color.white);
+		button.addActionListener( (e) -> airportlot.start());
+		
+		button2.addActionListener( (e) -> airportlot.stop());
 		
 		//////////////////////
 
@@ -278,36 +287,71 @@ public class StaticGUI {
 		JLabel lCI = new JLabel("CheckIns:");
 		//textLabels.add(lCI);
 		JTextField tCI = new JTextField();
+		tCI.setPreferredSize(new Dimension(250,40));
+		tCI.setFont(new Font("Consolas",Font.PLAIN,35));
+		tCI.setForeground(new Color(0x00FF00));
+		tCI.setBackground(Color.black);
+		tCI.setCaretColor(Color.white);
 		texts.add(Arrays.asList(lCI,tCI));
 
 		JLabel lS = new JLabel("Security:");
 		//textLabels.add(lS);
 		JTextField tS = new JTextField();
+		tS.setPreferredSize(new Dimension(250,40));
+		tS.setFont(new Font("Consolas",Font.PLAIN,35));
+		tS.setForeground(new Color(0x00FF00));
+		tS.setBackground(Color.black);
+		tS.setCaretColor(Color.white);
 		texts.add(Arrays.asList(lS,tS));
 
 		JLabel lPC = new JLabel("Passport Controll:");
 		//textLabels.add(lPC);
 		JTextField tPC = new JTextField();
+		tPC.setPreferredSize(new Dimension(250,40));
+		tPC.setFont(new Font("Consolas",Font.PLAIN,35));
+		tPC.setForeground(new Color(0x00FF00));
+		tPC.setBackground(Color.black);
+		tPC.setCaretColor(Color.white);
 		texts.add(Arrays.asList(lPC,tPC));
 
 		JLabel lSh = new JLabel("Shops:");
 		//textLabels.add(lSh);
 		JTextField tSh = new JTextField();
+		tSh.setPreferredSize(new Dimension(250,40));
+		tSh.setFont(new Font("Consolas",Font.PLAIN,35));
+		tSh.setForeground(new Color(0x00FF00));
+		tSh.setBackground(Color.black);
+		tSh.setCaretColor(Color.white);
 		texts.add(Arrays.asList(lSh,tSh));
 
 		JLabel lBC = new JLabel("Baggage CheckIn:");
 		//textLabels.add(lBC);
 		JTextField tBC = new JTextField();
+		tBC.setPreferredSize(new Dimension(250,40));
+		tBC.setFont(new Font("Consolas",Font.PLAIN,35));
+		tBC.setForeground(new Color(0x00FF00));
+		tBC.setBackground(Color.black);
+		tBC.setCaretColor(Color.white);
 		texts.add(Arrays.asList(lBC,tBC));
 
 		JLabel lWR = new JLabel("Waiting Rooms:");
 		//textLabels.add(lWR);
 		JTextField tWR = new JTextField();
+		tWR.setPreferredSize(new Dimension(250,40));
+		tWR.setFont(new Font("Consolas",Font.PLAIN,35));
+		tWR.setForeground(new Color(0x00FF00));
+		tWR.setBackground(Color.black);
+		tWR.setCaretColor(Color.white);
 		texts.add(Arrays.asList(lWR,tWR));
 
 		JLabel lT = new JLabel("Termianls:");
 		//textLabels.add(lT);
 		JTextField tT = new JTextField();
+		tT.setPreferredSize(new Dimension(250,40));
+		tT.setFont(new Font("Consolas",Font.PLAIN,35));
+		tT.setForeground(new Color(0x00FF00));
+		tT.setBackground(Color.black);
+		tT.setCaretColor(Color.white);
 		texts.add(Arrays.asList(lT,tT));
 
 		JButton b = new JButton("submit");
@@ -321,8 +365,18 @@ public class StaticGUI {
 		frame.setSize(2000,2000);
 		frame.setLayout(new BorderLayout(2000,25));
 		frame.add(borderPanel,BorderLayout.EAST);
+		
+		JFrame frameStart = new JFrame();
+		frameStart.setLayout(null);
+		frameStart.setSize(420,420);
+		frameStart.setBackground(Color.DARK_GRAY);
+		
+		b.addActionListener( (e) -> {
+			 frameStart.dispose();  
+		     frame.setVisible(true);
+		});
 
-		frame.setVisible(true);
+		
 		Panel1.add(entrance2);
 		Panel2.add(entrance);
 		Panel3.add(entrance3);
@@ -373,7 +427,7 @@ public class StaticGUI {
 		frame.add(Panel20);
 		frame.add(Panel21);
 		//borderPanel2.setSize(10,10);
-		borderPanel.setLayout(new GridBagLayout());
+		frameStart.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.fill = GridBagConstraints.HORIZONTAL;
 		gbc.gridx = 0;
@@ -386,11 +440,7 @@ public class StaticGUI {
 		gbc.fill = GridBagConstraints.HORIZONTAL;
 		gbc.gridx = 0;
 		gbc.gridy = 1;
-		borderPanel.add(button3,gbc);
-		gbc.fill = GridBagConstraints.HORIZONTAL;
-		gbc.gridx = 1;
-		gbc.gridy = 1;
-		borderPanel.add(textField,gbc);
+
 
 		int i=2;
 		for (List l:texts) {
@@ -398,15 +448,16 @@ public class StaticGUI {
 			gbc.fill = GridBagConstraints.HORIZONTAL;
 			gbc.gridx = 0;
 			gbc.gridy = i;
-			borderPanel.add((Component) l.get(0), gbc);
+			frameStart.add((Component) l.get(0), gbc);
 			gbc.gridx = 1;
 			gbc.gridy = i;
-			borderPanel.add((Component) l.get(1),gbc);
+			frameStart.add((Component) l.get(1),gbc);
 			i++;
 		}
 		gbc.gridx = 0;
 		gbc.gridy = 10;
-		borderPanel.add(b,gbc);
+		frameStart.add(b,gbc);
+		frameStart.setVisible(true);
 
 		airportlot.run();
 	}
@@ -440,5 +491,10 @@ public class StaticGUI {
 		t1.setForeground(new Color(0x00FF00));
 		t1.setBackground(Color.black);
 		//t1.setCaretColor(Color.white);
+	}
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }
