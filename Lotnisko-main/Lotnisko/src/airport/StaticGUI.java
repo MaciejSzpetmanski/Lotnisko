@@ -408,7 +408,7 @@ public class StaticGUI {
 		gbc.gridy = 10;
 		borderPanel.add(b,gbc);
 
-		//airportlot.run();
+		airportlot.run();
 	}
 
 	public static void makePanel(){
