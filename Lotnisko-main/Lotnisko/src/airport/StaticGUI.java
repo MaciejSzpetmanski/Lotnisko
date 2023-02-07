@@ -173,7 +173,7 @@ public class StaticGUI implements ActionListener{
 			i++;
 		}
 		gbc.gridx = 0;
-		gbc.gridy = 10;
+		gbc.gridy = 11;
 		frameStart.add(b,gbc);
 		frameStart.setVisible(true);
 
