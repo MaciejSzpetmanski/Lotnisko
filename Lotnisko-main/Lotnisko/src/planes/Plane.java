@@ -40,6 +40,7 @@ public class Plane implements Comparable<Plane>{
 				Plane pOdlot = p.getOdlot();
                 if(pOdlot.getOdlot()==odlot & pOdlot.getTerminal()==terminal){
 					it.remove();	//pasa¿er odlatuje z lotniska
+					p.getRoom().decreaseCapacityNow();
 				}
                 
             }
