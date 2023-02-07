@@ -1,6 +1,2 @@
 # Lotnisko
-Miejsce współpracy w celu stworzenia najlepszego symulatora lotniska jaki widział świat.
-
-Zadania na wolne:
-- generator ścieżek - Agata
-- (jeśli się uda) wątek - Agata/ co-operacja
+Aplikacja jest wizualizacją przepływu pasażerów przez lotnisko. Lotnisko tworzone jest na podstawie danych przez użytkownika maksymalnych pojemności pokojów różnych typów. Kolor pokoju wskazuje na jego procent zapełnienia. Przekroczenie limitu sygnalizowane jest kolorem czerwonym, a dokładna ilość osób w pomieszczeniu jest również wyświetlana. Odlot pasażerów z lotniska zawiadamiany jest przez zmianę napisu na terminalu.Przyciski start/stop pozwalają kontrolować wizualizację.
