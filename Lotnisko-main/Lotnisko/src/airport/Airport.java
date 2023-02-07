@@ -65,18 +65,18 @@ public class Airport implements Runnable{
     }
 
     public void run() {
+        boolean takeOff=false;
+        Plane plane = null;
     	do {
     	while(!isStopped) {
         time = 0;
+
         //Initiate(2, 7, 7, 7, 7, 7, 7, 7, 7, 7);
         //passengers.addAll(PassengerGenerator.generate(30));
         for(int i =last; i<180; i++ ){
            // generuj pasa�er i dodaj do globalnej listy
             if(i<160){ passengers.addAll(PassengerGenerator.generate(howMany));}
-            if(isStopped) {
-            	last = i;
-            	break;
-            }
+
            // sprawd� okres czekania i daj sygna� 
             for (Passanger p:passengers){
                 if(p.getWaitingTime() <= Airport.getTime()) {
@@ -87,11 +87,17 @@ public class Airport implements Runnable{
             //spr odpoty
             if(planes.first().getOdlot()<=time){
                 //odlatuje zabieraj�c pasa�er�w
-                Plane p = planes.pollFirst();   //usuwa i zwraca pierwszy
-                p.takeOff();
+                takeOff = true;
+                plane = planes.pollFirst();   //usuwa i zwraca pierwszy
+                plane.takeOff();
+
             }
+            else takeOff = false;
 
             StaticGUI.refresh();
+            if(takeOff){
+                StaticGUI.odlot(plane.getTerminal());
+            }
 
            //sleep
            try {
@@ -100,6 +106,14 @@ public class Airport implements Runnable{
 			    e.printStackTrace();
 		    }
             time++;
+           if(takeOff){
+               StaticGUI.przylot(plane.getTerminal());
+           }
+            if(isStopped) {
+                last = i;
+                break;
+            }
+
        }
     	}
     	}while(temp);
