@@ -8,6 +8,7 @@ import rooms.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.TreeSet;
 
 public class Airport implements Runnable{
@@ -16,12 +17,13 @@ public class Airport implements Runnable{
     private static List<Passanger> terminals = new ArrayList<>();
     private static TreeSet<Plane> planes;
     private static int time;
+    private int howMany = 20;
     
     private volatile boolean isStopped = true;
     private boolean temp = true;
     int last = 0;
 
-    public static void Initiate(int serviceTime,int CheckInCapacity, int SecurityCapacity, int WRCapacity, int WRVIPCapacity, int TerminalCapacity, int PCCapacity, int ShopCapacity, int BCICapacity, int BDCapacity) {
+    public static void Initiate(int CheckInCapacity, int SecurityCapacity, int WRCapacity, int WRVIPCapacity, int TerminalCapacity, int PCCapacity, int ShopCapacity, int BCICapacity, int BDCapacity) {
         //chceckIn - 0
         //Security - 1
         //BaggageCheckIn - 2
@@ -31,17 +33,18 @@ public class Airport implements Runnable{
         //WaitingRoom - 6
         //Terminal - 7
         // Wej�cie - 8
+        Random random = new Random();
         for (int i = 0; i <= 8; i++) {
             airport.add(new ArrayList<>());
         }
         for (int i = 0; i < 5; i++) {
-        	airport.get(8).add(new Entrance(serviceTime));
-            airport.get(0).add(new CheckIn(i, 3, CheckInCapacity, i == 3));
-            airport.get(1).add(new Security(4 + i, 5, SecurityCapacity, i == 3));
+        	airport.get(8).add(new Entrance(random.nextInt(3)));
+            airport.get(0).add(new CheckIn(i, random.nextInt(2)+3, CheckInCapacity, i == 3));
+            airport.get(1).add(new Security(random.nextInt(5)+2 + i, 5, SecurityCapacity, i == 3));
             airport.get(6).add(new WaitingRoom(14 + i, 0, (i == 3) ? WRVIPCapacity : WRCapacity, i == 3));
             airport.get(7).add(new Terminal(18 + i, 4, TerminalCapacity));
-            if (i % 2 == 0) airport.get(4).add(new PassportControl(10 + i / 2, 3, PCCapacity));
-            else airport.get(5).add(new Shop(11 + i / 2, 3, ShopCapacity));
+            if (i % 2 == 0) airport.get(4).add(new PassportControl(10 + i / 2, random.nextInt(3)+2, PCCapacity));
+            else airport.get(5).add(new Shop(11 + i / 2, 3+random.nextInt(15), ShopCapacity));
         }
         airport.get(2).add(new BaggageCheckIn(8, 6, BCICapacity));
         airport.get(3).add(new BaggageDrop(8, 6, BDCapacity));
@@ -69,7 +72,7 @@ public class Airport implements Runnable{
         //passengers.addAll(PassengerGenerator.generate(30));
         for(int i =last; i<180; i++ ){
            // generuj pasa�er i dodaj do globalnej listy
-            passengers.addAll(PassengerGenerator.generate(100));
+            if(i<160){ passengers.addAll(PassengerGenerator.generate(howMany));}
             if(isStopped) {
             	last = i;
             	break;
@@ -124,4 +127,7 @@ public class Airport implements Runnable{
     }
 
 
+    public void setHowMany(int howMany) {
+        this.howMany = howMany;
+    }
 }
